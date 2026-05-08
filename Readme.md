@@ -56,6 +56,7 @@ Applied SMOTE (Synthetic Minority Over-sampling Technique) on training data
 Used scale_pos_weight in XGBoost to bias learning toward rare failure events
 
 4. Models Evaluated
+   
 | Model | Notes |
 |---|---|
 | Logistic Regression | Baseline / performance floor |
