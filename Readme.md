@@ -43,6 +43,7 @@ Identified failure mode distribution and trigger conditions
 Structured analysis using the UBM Rule: Univariate → Bivariate → Multivariate
 
 2. Feature Engineering
+   
 | Feature | Formula | Business Purpose |
 |---|---|---|
 | `temp_diff` | Process Temp − Air Temp | Monitors cooling efficiency |
