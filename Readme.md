@@ -75,19 +75,24 @@ Temperature Difference — Thermal inefficiency signal
 
 All charts saved in assets/ folder. See below for what each represents.
 
-| Chart | Folder | Insight |
-|---|---|---|
-| Class Imbalance Distribution | `eda/` | Shows 3.39% failure rate — justifies SMOTE |
-| Failure Mode Breakdown | `eda/` | Which failure type dominates |
-| Torque vs Speed Scatter | `eda/` | Confirms inverse mechanical law |
-| Feature Correlation Heatmap | `eda/` | Multicollinearity check |
-| Temperature Distribution | `eda/` | Air vs Process temp spread |
-| Tool Wear vs Failure Boxplot | `eda/` | Fatigue threshold identification |
-| Confusion Matrix (XGBoost) | `models/` | True/False Positive-Negative breakdown |
-| ROC Curve Comparison | `models/` | All models vs baseline |
-| Model Performance Bar Chart | `models/` | F1 / Precision / Recall across all models |
-| SHAP Summary Plot | `explainability/` | Feature impact distribution |
-| SHAP Feature Importance Bar | `explainability/` | Top predictors ranked |
+| Chart | Folder |
+|---|---|
+| Distribution of Machine Failure (0 = No Failure, 1 = Failure) | `assets/eda/` |
+| Frequency of Specific Machine Failure Modes | `assets/eda/` |
+| Machine Failure Distribution across Product Types (L, M, H) | `assets/eda/` |
+| Correlation Heatmap of Sensor Features | `assets/eda/` |
+| Torque vs. Rotational Speed (Sampled Data) | `assets/eda/` |
+| Distribution of Features (Multi-subplot) | `assets/eda/` |
+| Effect of Temperature Difference on Failure | `assets/eda/` |
+| Tool Wear vs. Machine Failure | `assets/eda/` |
+| Multivariate Scatter (Chart 9) | `assets/eda/` |
+| Torque Distribution by Product Type and Failure | `assets/eda/` |
+| Air Temp vs Failure & Process Temp vs Failure | `assets/eda/` |
+| Rotational Speed Distribution by Product Type | `assets/eda/` |
+| Count of Concurrent Failure Modes | `assets/eda/` |
+| Complete Feature Correlation Matrix | `assets/eda/` |
+| Multidimensional Sensor Relationships (Pair Plot) | `assets/eda/` |
+| Evaluation Metric Comparison: Logistic Regression (Baseline vs Tuned) | `assets/models/` |
 
 ## 🧰 Tech Stack
 
