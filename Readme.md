@@ -18,13 +18,13 @@ Power Failure (PWF)
 Overstrain Failure (OSF)
 Random Failures (RNF)
 
-
-
 Success = minimizing False Negatives (missed failures) while maintaining high Precision, so maintenance teams get actionable, reliable alerts.
 
 ## 📊 Dataset Overview
-SplitRecordsColumnsTraining Set1,36,42914Test Set90,95414
-Key Features:
+| Split | Records | Columns |
+|---|---|---|
+| Training Set | 1,36,429 | 14 |
+| Test Set | 90,954 | 14 |
 
 Air Temperature [K], Process Temperature [K]
 Rotational Speed [rpm], Torque [Nm], Tool Wear [min]
@@ -43,17 +43,26 @@ Identified failure mode distribution and trigger conditions
 Structured analysis using the UBM Rule: Univariate → Bivariate → Multivariate
 
 2. Feature Engineering
-Three high-impact synthetic variables created:
-FeatureFormulaBusiness Purposetemp_diffProcess Temp − Air TempMonitors cooling efficiencypower_estTorque × Rotational SpeedReflects total machine workloadtorque_per_speedTorque / Rotational SpeedDetects mechanical strain
+| Feature | Formula | Business Purpose |
+|---|---|---|
+| `temp_diff` | Process Temp − Air Temp | Monitors cooling efficiency |
+| `power_est` | Torque × Rotational Speed | Reflects total machine workload |
+| `torque_per_speed` | Torque / Rotational Speed | Detects mechanical strain |
+
 3. Handling Class Imbalance
 
 Applied SMOTE (Synthetic Minority Over-sampling Technique) on training data
 Used scale_pos_weight in XGBoost to bias learning toward rare failure events
 
 4. Models Evaluated
-ModelNotesLogistic RegressionBaseline / performance floorRandom ForestEnsemble, captures non-linearityXGBoost (Tuned)Champion Model — best F1-macroLightGBMEfficient gradient boosting
-Hyperparameter Tuning: RandomizedSearchCV with 3-fold Stratified Cross-Validation, optimizing for F1-macro score.
-5. Model Explainability (SHAP)
+| Model | Notes |
+|---|---|
+| Logistic Regression | Baseline / performance floor |
+| Random Forest | Ensemble, captures non-linearity |
+| XGBoost (Tuned) | **Champion Model** — best F1-macro |
+| LightGBM | Efficient gradient boosting |
+
+6. Model Explainability (SHAP)
 Top 3 failure predictors identified:
 
 Torque — Most critical sensor signal
@@ -64,10 +73,32 @@ Temperature Difference — Thermal inefficiency signal
 
 All charts saved in assets/ folder. See below for what each represents.
 
-ChartFolderInsightClass Imbalance Distributioneda/Shows 3.39% failure rate — justifies SMOTEFailure Mode Breakdowneda/Which failure type dominatesTorque vs Speed Scattereda/Confirms inverse mechanical lawFeature Correlation Heatmapeda/Multicollinearity checkTemperature Distributioneda/Air vs Process temp spreadTool Wear vs Failure Boxploteda/Fatigue threshold identificationConfusion Matrix (XGBoost)models/True/False Positive-Negative breakdownROC Curve Comparisonmodels/All models vs baselineModel Performance Bar Chartmodels/F1 / Precision / Recall across all modelsSHAP Summary Plotexplainability/Feature impact distributionSHAP Feature Importance Barexplainability/Top predictors ranked
+| Chart | Folder | Insight |
+|---|---|---|
+| Class Imbalance Distribution | `eda/` | Shows 3.39% failure rate — justifies SMOTE |
+| Failure Mode Breakdown | `eda/` | Which failure type dominates |
+| Torque vs Speed Scatter | `eda/` | Confirms inverse mechanical law |
+| Feature Correlation Heatmap | `eda/` | Multicollinearity check |
+| Temperature Distribution | `eda/` | Air vs Process temp spread |
+| Tool Wear vs Failure Boxplot | `eda/` | Fatigue threshold identification |
+| Confusion Matrix (XGBoost) | `models/` | True/False Positive-Negative breakdown |
+| ROC Curve Comparison | `models/` | All models vs baseline |
+| Model Performance Bar Chart | `models/` | F1 / Precision / Recall across all models |
+| SHAP Summary Plot | `explainability/` | Feature impact distribution |
+| SHAP Feature Importance Bar | `explainability/` | Top predictors ranked |
 
 ## 🧰 Tech Stack
-LibraryPurposePandas, NumPyData manipulation & numerical computationMatplotlib, SeabornEDA visualizationsScikit-LearnML pipelines, metrics, cross-validationXGBoostChampion gradient boosting modelLightGBMEfficient boosting alternativeImbalanced-LearnSMOTE for class balancingSHAPModel explainabilitySciPyStatistical analysis
+
+| Library | Purpose |
+|---|---|
+| Pandas, NumPy | Data manipulation & numerical computation |
+| Matplotlib, Seaborn | EDA visualizations |
+| Scikit-Learn | ML pipelines, metrics, cross-validation |
+| XGBoost | Champion gradient boosting model |
+| LightGBM | Efficient boosting alternative |
+| Imbalanced-Learn | SMOTE for class balancing |
+| SHAP | Model explainability |
+| SciPy | Statistical analysis |
 
 ## 💼 Business Impact
 
